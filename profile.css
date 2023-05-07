@@ -3,32 +3,54 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #eddcd2;
+    background-color: rgb(164, 164, 164);
     color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+ 
+.container{
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: relative; */
+    background-color: white;
+    border: 2px solid rgb(97, 93, 93);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: fit-content;
+     
 }
 
 .fill-box {
     border: 2px solid black;
-    width: 400px;
+    width: 100%;
 }
 
 .labels {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
+    margin-left: 180px ;
 }
 
-.card {
+.studentCard , .teacherCard{
+    display: none;
     box-shadow: 0 8px 8px 0 rgba(48, 47, 47, 0.2);
     border-radius: 25px;
     transition: 0.3s;
     padding-bottom: 50px;
     padding-top: 50px;
     width: 42%;
-    display: flex;
+    flex-direction: column;
     justify-content: center;
+
     background-color: white;
 }
 
-.card:hover {
+ 
+.studentCard:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }

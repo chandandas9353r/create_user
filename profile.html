@@ -7,32 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PROFILE VALIDATION</title>
   <!-- google fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="profile.css" type="text/css">
   <script src="profile.js" type="module"></script>
 </head>
 
 <body>
-  <center>
-    <h1 style="font-family: 'Poppins', sans-serif" ;>Verify Yourself</h1>
-  </center>
-  <div class="card">
+  
 
-    <form action="/name.js">
+  <div class="container">
+         
+    <label for="prof" class="prof">Select Your Profession: &nbsp;</label>
+    <select name="prof" id="prof">
+    <option value="" disabled selected>profession</option>
+    <option value="student">Student</option>
+    <option value="teacher">Teacher</option>
+    
+    </select>
+
+   
+</div>
+
+
+  <div class="studentCard">
+    <center>
+      <h1 style="font-family: 'Poppins', sans-serif" ;>Verify Yourself</h1>
+    </center>
+    
       <div>
         <br />
-        <label for="fname" class="labels">First Name: </label>
-        <input type="text" name="fname" id="fname" class="fill-box" min="3" max="30" required style="width: 200px;" />
+        <label for="name" class="labels"> Name: </label>
+        <input type="text" name="name" id="name" class="fill-box" min="3" max="30" required style="width: 200px;" />
       </div>
 
-      <div>
-        <br />
-        <label for="lname" class="labels">Last Name: </label>
-        <input type="text" name="lname" id="lname" class="fill-box" min="3" max="30" required style="width:200px;" />
-      </div>
-
+     
       <div>
         <br />
         <label for="roll" class="labels">Roll No:</label>
@@ -101,10 +110,38 @@
       <center>
         <hr />
 
-        <input type="button" id="updateBtn" value="Submit" />
+        <button id="updateBtn"  >Submit</button>
 
       </center>
-    </form>
+    
+  </div>
+
+
+  <div class="teacherCard">
+    <center>
+      <h1 style="font-family: 'Poppins', sans-serif" ;>Verify Yourself</h1>
+    </center> 
+    <div>
+      <br />
+      <label for="name" class="labels"> Name: </label>
+      <input type="text" name="name" id="name" class="fill-box" min="3" max="30" required style="width: 200px;" />
+    </div>
+
+   
+    <div>
+      <br />
+      <label for="roll" class="labels">Roll No:</label>
+      <input type="text" name="roll" id="roll" class="fill-box" required style="width:100px" />
+    </div>
+
+
+    <center>
+      <hr />
+
+      <button id="updateBtn"  >Submit</button>
+
+    </center>
+  
   </div>
 </body>
 
