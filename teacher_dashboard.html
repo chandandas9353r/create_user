@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DASHBOARD</title>
+        <link rel="stylesheet" href="teacher_dashboard.css" type="text/css">
+        <script src="teacher_dashboard.js" type="module"></script>
+    </head>
+    <body>
+        <div id="heading">
+            <h2>DASHBOARD</h2>
+        </div>
+        <div id="container">
+            <p>Today's Classes</p>
+            <ul id="list">
+                <li>
+                    <span>No classes</span>
+                </li>
+            </ul>
+            <button id="addBtn">Add</button>
+        </div>
+        <div id="createClassContainer">
+            <div class="item">
+                <span>Semester:</span>
+                <input type="number" id="sem">
+            </div>
+            <div class="item">
+                <span>Subject:</span>
+                <input type="text" id="sub">
+            </div>
+            <div class="item">
+                <span>Room:</span>
+                <input type="number" id="room">
+            </div>
+            <div class="item">
+                <span>Time:</span>
+                <input type="time" id="time">
+            </div>
+            <div class="item">
+                <button id="createClassBtn">Add</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
+    </body>
+</html>
