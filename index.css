@@ -23,20 +23,20 @@ body{
 }
 
 .container > *,
-.container > #sign-in > *,
-.container > #sign-in > div > *{
+.container > #sign-up > *,
+.container > #sign-up > div > *{
     padding: 10px;
     overflow: hidden;
 }
-.container > #sign-in > div{
+.container > #sign-up > div{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.container > #sign-in > div > label{
+.container > #sign-up > div > label{
     padding: 0px;
 }
-.container > #sign-in-button > button{
+.container > #sign-up-button > button{
     padding: 10px;
     border: 0px;
     border-radius: 10px;
