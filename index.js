@@ -20,7 +20,7 @@ signUpBtn.addEventListener('click', signUp)
 
 function signUp() {
     let email = document.getElementsByName('email')[0].value
-    let password = document.getElementsByName('pass')[0].value
+    let password = document.getElementsByName('password')[0].value
 
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         sendEmailVerification(auth.currentUser)
