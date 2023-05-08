@@ -46,7 +46,7 @@ function updateProfileDetails(user){
             }
         }
         sem = (isSelected) ? i+1 : '6'
-        set(ref(database, `users/student/${user.uid}`), {
+        set(ref(database, `users/${user.uid}`), {
             'First Name': fname,
             'Last Name': lname,
             'Roll': roll,
