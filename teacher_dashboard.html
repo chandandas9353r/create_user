@@ -1,42 +1,132 @@
 <html>
-    <head>
-        <title>DEMO</title>
-        <script src="https://kit.fontawesome.com/6ff20a25ef.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="teacher_dashboard.css">
-    </head>
-    <body>
-        <div class="heading">
-            <h2>
-                <i class="fa-solid fa-chalkboard-user" style="color: #000000;"></i> DASHBOARD </i>
-            </h2>
-            
-        </div>
-        <div class="container">
-            <!-- <p>Today's Lecture</p> -->
-            <h2>Today's Lectures</h2>
-            <span>No lectures has been set.... </span><br>
 
-            <div class="container1">
-                <span>Click to add Lectures</span>
-                <i class="fa-solid fa-plus fa-2xl" onclick="createClass">
+<head>
+    <title>DEMO</title>
+    <script src="https://kit.fontawesome.com/6ff20a25ef.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher_dashboard.css">
+</head>
+
+<body>
+    <div class="heading">
+        <h2>
+            <i class="fa-solid fa-chalkboard-user" style="color: #000000;"></i> DASHBOARD </i>
+        </h2>
+
+    </div>
+    <div class="container">
+        <!-- <p>Today's Lecture</p> -->
+        <h2>Today's Lectures</h2>
+        <span>No lectures has been set.... </span><br>
+
+        <div class="container1">
+            <span>Click to add Lectures </span>
+            <i class="fa-solid fa-plus fa-2xl" onclick="createClass">
+
+            </i>
+
+        </div>
+
+    </div>
+
+
+    <div class="ongoingClass">
+        <span>Ongoing Class ></span>
+        <div class="cards">
+            <p>Theory of Computation</p>
+            <div>
+                <span>Started at 9:00 AM</span>
+                <br><span> Dept : BCA</span>
+                <br><span> Semester : 6th </span>
+                <br>
+                <br> 
+                <br>
+                <div>
+                    <span>10 Attended</span>
                      
-                </i>
-
+                </div>
+                
             </div>
-           
-
-            
-        </div>
-        
-       
-    </body>
     
-    <script>
-        function add(){
-            document.querySelector('.addClass').style.display = 'block'
-        }
-    </script>
+        </div>
+    </div>
+
+<div class="upcomingClass">
+    <span>Upcoming Classes > </span>
+
+    <div class="cards">
+        <p>Machine Learning</p>
+        <div>
+            <span>Class starts at 10:00 AM</span>
+            <br><span> Dept : BCA</span>
+            <br><span> Semester : 6th </span>
+        </div>
+
+    </div>
+
+    <div class="cards">
+        <p>Compiler Design</p>
+        <div>
+            <span>Class starts at 10:00 AM</span>
+            <br><span> Dept : BCA</span>
+            <br><span> Semester : 6th </span>
+        </div>
+
+    </div>
+
+    <div class="cards">
+        <p>C++</p>
+        <div>
+            <span>Class starts at 10:00 AM</span>
+            <br><span> Dept : BCA</span>
+            <br><span> Semester : 6th </span>
+        </div>
+
+    </div>
+    <div class="cards">
+        <p>Web Development</p>
+        <div>
+            <span>Class starts at 10:00 AM</span>
+            <br><span> Dept : BCA</span>
+            <br><span> Semester : 6th </span>
+        </div>
+
+    </div>
+    <div class="cards">
+        <p>Java</p>
+        <div>
+            <span>Class starts at 10:00 AM</span>
+            <br><span> Dept : BCA</span>
+            <br><span> Semester : 6th </span>
+        </div>
+
+    </div>
+    <div class="cards">
+        <p>DBMS</p>
+        <div>
+            <span>Class starts at 10:00 AM</span>
+            <br><span> Dept : BCA</span>
+            <br><span> Semester : 6th </span>
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+</body>
+
+<script>
+    function add() {
+        document.querySelector('.addClass').style.display = 'block'
+    }
+</script>
+
 </html>

@@ -37,7 +37,7 @@ body {
 }
 
 .studentCard , .teacherCard{
-    display: none;
+    display: flex;
     box-shadow: 0 8px 8px 0 rgba(48, 47, 47, 0.2);
     border-radius: 25px;
     transition: 0.3s;
