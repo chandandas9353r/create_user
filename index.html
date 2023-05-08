@@ -1,26 +1,40 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SIGN UP</title>
+        <title>INDEX</title>
+        <!-- google fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+        <!-- css -->
         <link rel="stylesheet" href="index.css" type="text/css">
+
+        <!-- js -->
         <script src="index.js" type="module"></script>
+        
     </head>
     <body>
-        <div id="container">
+        <div class="container">
             <h1>SIGN UP</h1>
-            <div id="sign-up">
+            <div id="sign-in">
                 <div>
-                    <label for="email">EMAIL:</label>
-                    <input type="text" name="email" id="email">
+                    <label for="username">EMAIL:</label>
+                    <input type="text" name="username" id="username">
                 </div>
                 <div>
-                    <label for="pass">PASSWORD:</label>
-                    <input type="password" name="pass" id="pass">
+                    <label for="password">PASSWORD:</label>
+                    <input type="password" name="password" id="password">
                 </div>
             </div>
-            <div id="sign-up-button">
-                <button id="sign-up-btn">Sign Up</button>
+            <div id="sign-in-button">
+                <button id="sign-in-btn">Sign Up</button>
+                 
+               
             </div>
+            <div>
+                <span>Already have an account? <a href="signin.html">sign-in</a></span>
+            </div>
+
         </div>
         <div id="verify">
             <p id="text"></p>
