@@ -25,16 +25,26 @@ function signIn() {
     let password = document.getElementById('password').value
 
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        let uid = (userCredential.user.auth.currentUser.uid)
         if (verifyAccount(auth)){
-            onValue(ref(database,'users/'), (snapshot) => {
-                (snapshot.child(`${userCredential.user.uid}`).exists()) ? window.open('dashboard.html','_self') : window.open('profile.html', '_self')
+            onValue(ref(database, 'student/'), (snapshot) => {
+                let course = snapshot.child(`${uid}/Course`).val(),
+                    sem = snapshot.child(`${uid}/Semester`).val(),
+                    profession = snapshot.child(`${uid}/Profession`).val()
+                if(profession == 'student'){
+                    onValue(ref(database, `/users/student/`), (snapshot) => {
+                        (snapshot.child(`${course}/${sem}/${uid}`).exists()) ? window.open('student_dashboard.html','_self') : window.open('profile.html','_self')
+                    })
+                    return
+                } else{
+                    onValue(ref(database, `/users/teacher/`), (snapshot) => {
+                        (snapshot.child(`${uid}`).exists()) ? window.open('teacher_dashboard.html','_self') : window.open('profile.html','_self')
+                    })
+                    return
+                }
             })
         }
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode,errorMessage)
-    });
+    })
 }
 
 function verifyAccount(auth) {

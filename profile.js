@@ -18,45 +18,99 @@ const database = getDatabase(app)
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        onValue(ref(database,'users/'), (snapshot) => {
-            (snapshot.child(`${user.uid}`).exists()) ? window.open('dashboard.html','_self') : updateProfileDetails(user)
+        let uid = (user.uid)
+        onValue(ref(database, 'student/'), (snapshot) => {
+            let course = snapshot.child(`${uid}/Course`).val(),
+                sem = snapshot.child(`${uid}/Semester`).val(),
+                profession = snapshot.child(`${uid}/Profession`).val()
+            if (profession == 'student') {
+                onValue(ref(database, `/users/student/`), (snapshot) => {
+                    (snapshot.child(`${course}/${sem}/${uid}`).exists()) ? window.open('student_dashboard.html', '_self') : updateProfileDetails(user)
+                })
+            } else {
+                onValue(ref(database, `/users/teacher/`), (snapshot) => {
+                    (snapshot.child(`${uid}`).exists()) ? window.open('teacher_dashboard.html', '_self') : updateProfileDetails(user)
+                })
+            }
         })
     } else {
         console.log('SIGNED OUT')
     }
 });
 
-function updateProfileDetails(user){
-    document.getElementById('updateBtn').addEventListener('click', function(){
-        let fname = document.getElementById('fname').value,
-            lname = document.getElementById('lname').value,
-            roll = document.getElementById('roll').value,
-            year = document.getElementById('year'),
-            sid = document.getElementById('sid').value,
-            course = document.getElementById('course').value,
-            sem = document.getElementsByName('sem'),
+function updateStudentProfile(user, studentCard, profession) {
+    studentCard.querySelector('#updateBtn').addEventListener('click', function () {
+        let name = studentCard.querySelector('#name').value,
+            roll = studentCard.querySelector('#roll').value,
+            year = studentCard.querySelector('#year'),
+            sid = studentCard.querySelector('#sid').value,
+            course = studentCard.querySelector('#course').value,
+            sem = studentCard.querySelector('#sem'),
             isSelected = false,
             i
-        sid = (year.value == '') ? '2020-'+sid : year.value+'-'+sid
+        sid = (year.value == '') ? '2020-' + sid : year.value + '-' + sid
         course = (course == '') ? 'BCA' : course
-        for(i = 0; i < sem.length; i++){
-            if(sem[i].checked){
+        for (i = 0; i < sem.length; i++) {
+            if (sem[i].checked) {
                 isSelected = true
                 break
             }
         }
-        sem = (isSelected) ? i+1 : '6'
-        set(ref(database, `users/${user.uid}`), {
-            'First Name': fname,
-            'Last Name': lname,
+        sem = (isSelected) ? i + 1 : '6'
+        set(ref(database, `users/student/${course}/${sem}/${user.uid}`), {
+            'Name': name,
             'Roll': roll,
-            'Student ID': sid,
-            'Course': course,
-            'Semester': sem
+            'Student ID': sid
         }).then(() => {
             console.log('DATA UPDATED')
         }).catch((error) => {
             console.log(error.code)
         })
+        set(ref(database, `student/${user.uid}`), {
+            'Course': course,
+            'Semester': sem,
+            'Profession': profession
+        }).then(() => {
+            console.log('DATA UPDATED')
+        }).catch((error) => {
+            console.log(error.code)
+        })
+    })
+}
+
+function updateTeacherProfile(user, teacherCard, profession) {
+    teacherCard.querySelector('#updateBtn').addEventListener('click', function () {
+        let name = teacherCard.querySelector('#name').value,
+            dept = teacherCard.querySelector('#dept')
+        dept = (dept.value == '') ? 'BCA' : dept.value
+        set(ref(database, `users/teacher/${user.uid}`), {
+            'Name': name,
+            'Department': dept,
+            'Profession': profession
+        }).then(() => {
+            console.log('DATA UPDATED')
+        }).catch((error) => {
+            console.log(error.code)
+        })
+    })
+}
+
+function updateProfileDetails(user) {
+    let profession = document.getElementById('prof'),
+        studentCard = document.querySelector('.studentCard'),
+        teacherCard = document.querySelector('.teacherCard')
+    profession.addEventListener('click', function () {
+        console
+        studentCard.style.display = 'none'
+        teacherCard.style.display = 'none'
+        if (profession.value == 'student') {
+            studentCard.style.display = 'flex'
+            updateStudentProfile(user, studentCard, 'student')
+            return
+        } else if (profession.value == 'teacher') {
+            teacherCard.style.display = 'flex'
+            updateTeacherProfile(user, teacherCard, 'teacher')
+            return
+        }
     })
 }
