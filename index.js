@@ -31,7 +31,7 @@ function signUp() {
 function verifyAccount(auth) {
     let verified = auth.currentUser.emailVerified
     if (verified == false){
-        document.getElementById('container').style.visibility = 'hidden'
+        document.querySelector('.container').style.visibility = 'hidden'
         document.getElementById('verify').style.visibility = 'visible'
         document.getElementById('text').innerHTML = `Verification email sent to ${auth.currentUser.email}`
     } else return true
