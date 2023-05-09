@@ -16,6 +16,11 @@ const app = initializeApp(appSettings)
 const auth = getAuth(app)
 const database = getDatabase(app)
 
+let studentCard = document.querySelector('.studentCard'),
+    teacherCard = document.querySelector('.teacherCard')
+studentCard.style.display = 'none'
+teacherCard.style.display = 'none'
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         let uid = (user.uid)
@@ -96,11 +101,8 @@ function updateTeacherProfile(user, teacherCard, profession) {
 }
 
 function updateProfileDetails(user) {
-    let profession = document.getElementById('prof'),
-        studentCard = document.querySelector('.studentCard'),
-        teacherCard = document.querySelector('.teacherCard')
+    let profession = document.getElementById('prof')
     profession.addEventListener('click', function () {
-        console
         studentCard.style.display = 'none'
         teacherCard.style.display = 'none'
         if (profession.value == 'student') {
