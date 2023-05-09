@@ -19,362 +19,408 @@
 
     </div>
     <div class="container">
-        <!-- <p>Today's Lecture</p> -->
-        <h2>Today's Lectures</h2>
-        <span>No lectures has been set.... </span><br>
+        <h2>Today's Class</h2>
+        <span style="font-weight: light; font-style: italic;"> Classes are yet to set.....</span><br>
 
         <div class="container1">
-            <span>Click to add Lectures </span>
+            <span>Click to add new class </span>
             <i class="fa-solid fa-plus fa-2xl" onclick="createClass">
 
             </i>
 
         </div>
 
+
+        <div class="addClassBtn">
+            <span style="font-weight: bolder;"> ADD NEW CLASS</span>
+            <br>
+
+            <br> <label for="startTime" id="startTime">Start time :&nbsp;</label>
+            <input type="time" id="startTime" placeholder="Enter class time ">
+
+            <br> <label for="endTime" id="endTime">End time :&nbsp;</label>
+            <input type="time" id="endTime" placeholder="Enter class time ">
+
+            <br> <label for="className" id="className">Class Name :&nbsp; </label>
+            <input type="text" id="className">
+
+            <br><label for="sem" id="sem">Semester : &nbsp; </label>
+            <select name="sem" id="sem">
+                <option value="" disabled selected> </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+
+            </select>
+
+           <br> <label for="dept" id="dept">Department : &nbsp;</label>
+            <input type="text">
+
+
+           <br>
+           <br><br> <button id="newClassBtn">
+                DONE
+
+            </button>
+        </div>
+
+        
+
+
+
+
+
+
+
     </div>
 
-<div class="classes">
-    <div class="ongoingClass">
-        <span>Ongoing Class ></span>
-        <div class="cards">
-            <p>Theory of Computation</p>
-            <div>
-                <span>Started at 9:00 AM</span>
-                <br><span> Dept : BCA</span>
-                <br><span> Semester : 6th </span>
-                 <br><span>Ends at: 10:00 AM</span>
-                <br>
-                <br> 
-                <br>
+    <div class="classes">
+        <div class="ongoingClass">
+            <span>Ongoing Class ></span>
+            <div class="cards">
+                <p>Theory of Computation</p>
                 <div>
-                    <span>10 Attended</span>                   
+                    <span>Started at 9:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                    <br><span>Ends at: 10:00 AM</span>
+                    <br>
+                    <br>
+                    <br>
+                    <div>
+                        <span>10 Attended</span>
+                    </div>
+                    <span><a href="">click here </a>to end current class</span>
+
                 </div>
-               <span><a href="">click here </a>to end current class</span>
-                
+
             </div>
-    
-        </div>
-    </div>
-
-<div class="upcomingClass">
-    <span>Upcoming Classes > </span>
-
-    <div class="cards">
-        <p>Machine Learning</p>
-        <div>
-            <span>Class starts at 10:00 AM</span>
-            <br><span> Dept : BCA</span>
-            <br><span> Semester : 6th </span>
         </div>
 
-    </div>
+        <div class="upcomingClass">
+            <span>Upcoming Classes > </span>
 
-    <div class="cards">
-        <p>Compiler Design</p>
-        <div>
-            <span>Class starts at 10:00 AM</span>
-            <br><span> Dept : BCA</span>
-            <br><span> Semester : 6th </span>
+            <div class="cards">
+                <p>Machine Learning</p>
+                <div>
+                    <span>Class starts at 10:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                </div>
+
+            </div>
+
+            <div class="cards">
+                <p>Compiler Design</p>
+                <div>
+                    <span>Class starts at 10:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                </div>
+
+            </div>
+
+            <div class="cards">
+                <p>C++</p>
+                <div>
+                    <span>Class starts at 10:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                </div>
+
+            </div>
+            <div class="cards">
+                <p>Web Development</p>
+                <div>
+                    <span>Class starts at 10:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+
+                </div>
+
+            </div>
+            <div class="cards">
+                <p>Java</p>
+                <div>
+                    <span>Class starts at 10:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                </div>
+
+            </div>
+            <div class="cards">
+                <p>DBMS</p>
+                <div>
+                    <span>Class starts at 10:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
 
-    <div class="cards">
-        <p>C++</p>
-        <div>
-            <span>Class starts at 10:00 AM</span>
-            <br><span> Dept : BCA</span>
-            <br><span> Semester : 6th </span>
-        </div>
+    <br><br><br>
 
+    <div class="heading2">
+        <h2>Records</h2>
     </div>
-    <div class="cards">
-        <p>Web Development</p>
-        <div>
-            <span>Class starts at 10:00 AM</span>
-            <br><span> Dept : BCA</span>
-            <br><span> Semester : 6th </span>
 
-        </div>
+    <span>Select Subject: </span>
+    <select>
+        <option value="ml">Machine learning</option>
+        <option value="java">Java</option>
+        <option value="ai">AI</option>
+    </select>
+    <input type="date" name="date" id="date">
 
-    </div>
-    <div class="cards">
-        <p>Java</p>
-        <div>
-            <span>Class starts at 10:00 AM</span>
-            <br><span> Dept : BCA</span>
-            <br><span> Semester : 6th </span>
-        </div>
+    <table style="width: 100%;">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Roll
+            </th>
+            <th>
+                Student ID
+            </th>
+            <th>
+                Remark
+            </th>
+            <th>
+                Eligibility
+            </th>
+        </tr>
+        <tr>
+            <td>
+                Student A
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
 
-    </div>
-    <div class="cards">
-        <p>DBMS</p>
-        <div>
-            <span>Class starts at 10:00 AM</span>
-            <br><span> Dept : BCA</span>
-            <br><span> Semester : 6th </span>
-        </div>
+        <tr>
+            <td>
+                Student B
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
 
-    </div>
-    
-</div>
-
-</div>
-   
-<br><br><br>
- 
-<div class="heading2">
-    <h2>Records</h2>
-</div>
-
-<span>Select Subject: </span>
-<select>
-    <option value="ml">Machine learning</option>
-    <option value="java">Java</option>
-    <option value="ai">AI</option>
-</select>
-<input type="date" name="date" id="date">
-
-<table style="width: 100%;">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Roll
-        </th>
-        <th>
-            Student ID
-        </th>
-        <th>
-            Remark
-        </th>
-        <th>
-            Eligibility
-        </th>
-    </tr>
-    <tr>
-        <td>
-            Student A
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            Yes
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            Student B
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            Yes
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            Student C
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student C
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
 
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
 
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Absent
-        </td>
-        <td>
-            Yes
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Absent
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Absent
-        </td>
-        <td>
-            Yes
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Absent
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Absent
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Absent
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Absent
-        </td>
-        <td>
-            Yes
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Absent
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            
-            Absent
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
 
-    <tr>
-        <td>
-            Student D
-        </td>
-        <td>
-            1000
-        </td>
-        <td>
-            2020-1000
-        </td>
-        <td>
-            Present
-        </td>
-        <td>
-            No
-        </td>
-    </tr>
+                Absent
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Student D
+            </td>
+            <td>
+                1000
+            </td>
+            <td>
+                2020-1000
+            </td>
+            <td>
+                Present
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
 
 
 
-</table>
+    </table>
+
+
 
 
 
