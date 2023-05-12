@@ -51,11 +51,11 @@ function loggedIn() {
                         item = document.createElement('div')
                     section.setAttribute('class', 'cards')
                     createSection('p', element.key, section, null)
-                    createSection('span', `Class starts at ${snapshot.child(element.key).val().Time}`, item, section)
+                    createSection('span', `Class starts at ${snapshot.child(`${sub}/Start Time`).val()}`, item, section)
                     createSection('br', '', item, section)
                     createSection('span', `Dept : ${dept}`, item, section)
                     createSection('br', '', item, section)
-                    createSection('span', `Semester : ${snapshot.child(element.key).val().Semester}`, item, section)
+                    createSection('span', `Semester : ${snapshot.child(sub).val().Semester}`, item, section)
                     lecturesList.append(section)
                 }))
             }
@@ -67,7 +67,7 @@ function loggedIn() {
     function openCreateCard() {
         content.style.display = 'none'
         createClassCard.style.display = 'block'
-        let create = document.getElementById('create'),
+        let create = document.getElementById('newClassBtn'),
             cancel = document.getElementById('cancel')
         create.addEventListener('click', function () {
             onValue(ref(database), (snapshot) => {
@@ -75,25 +75,28 @@ function loggedIn() {
                     dept = snapshot.child(`users/teacher/${uid}/Department`).val(),
                     teacherName = snapshot.child(`users/teacher/${uid}/Name`).val(),
                     currentDate = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate(),
+                    startTime = document.getElementById('startTime').value,
+                    endTime = document.getElementById('endTime').value,
                     sem = document.getElementById('sem').value,
                     sub = document.getElementById('sub').value,
-                    room = `R-${document.getElementById('room').value}`,
-                    time = document.getElementById('time').value
+                    room = `R-${document.getElementById('room').value}`
                 currentDate = (date.getMonth() + 1 < 10) ? `${currentDate}:0${date.getMonth() + 1}:${date.getFullYear()}` : `${currentDate}:${date.getMonth() + 1}:${date.getFullYear()}`
                 set(ref(database, `classes/teachers/${dept}/${uid}/${sub}/`), {
                     'Semester': sem,
                     'Room': room,
-                    'Time': time
+                    'Start Time': startTime,
+                    'End Time': endTime
                 })
                 set(ref(database,`classes/${currentDate}/${dept}/${sem}/${sub}/`), {
                     'Teacher': teacherName,
-                    'Time': time,
+                    'Start Time': startTime,
+                    'End Time': endTime,
                     'Room': room
                 })
             })
             window.setTimeout(() => {
                 location.reload()
-            }, 3000)
+            }, 1000)
         })
         cancel.addEventListener('click', function () {
             location.reload()

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- icon -->
+    <script src="https://kit.fontawesome.com/6ff20a25ef.js"crossorigin="anonymous"></script>
+
+     <!-- fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
+     <!-- css -->
+
+     <link rel="stylesheet" href="student_dashboard.css">
+     <script src="student_dashboard.js" type="module"></script>
+
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="heading">
+        <h2>
+            <i class="fa-sharp fa-solid fa-graduation-cap" style="color: #000000;"></i>
+              DASHBOARD </i>
+        </h2>
+    </div>
+    <div class="container">
+        <h2>Today's Class</h2>
+        <span id="nolecture" style="font-weight: light; font-style: italic;"></span>
+        <div id="lecturesList"></div>
+    </div>
+    <div class="classes">
+        <div class="ongoingClass">
+            <span>Ongoing Class ></span>
+            <div class="cards">
+                <p>Theory of Computation</p>
+                <div>
+                    <span>Started at 9:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                     <br><span>Ends at: 10:00 AM</span>
+                    <br>
+                    <br> 
+                    <br>
+                    <span style="color: rgb(21, 255, 0);
+                    font-weight: bolder;">
+                        Marked Present
+                    </span>
+
+                    
+                   <span>
+                    <!-- border radius couldn't said -->
+                </div>
+        
+            </div>
+
+            <!-- Either the upper one or the lower one -->
+            <div class="cards">
+                <p>Theory of Computation</p>
+                <div>
+                    <span>Started at 9:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                     <br><span>Ends at: 10:00 AM</span>
+                    <br>
+                    <br> 
+                    <br>
+                    <span style="color: rgb(255, 0, 0);font-weight: bolder; ">
+                        Marked Absent
+                    </span>
+                    
+                   <span>
+                    
+                </div>
+        
+            </div>
+        </div>
+
+        <div class="upcomingClass">
+
+            <span>
+                Upcoming Classes > 
+            </span>
+            <div class="cards">
+                <p>Theory of Computation</p>
+                <div>
+                    <span>Starting at 9:00 AM</span>
+                    <br><span> Dept : BCA</span>
+                    <br><span> Semester : 6th </span>
+                    <br>
+                    <br> 
+    <!-- in case the time is up -->
+                    <span>
+                        Waiting for Teacher to respond
+                    </span>
+                     <br>
+                     
+                    <span>
+                        <span>
+                            <a href="">click here </a>
+                            to join class
+                        </span>
+                    </span>
+                   <span>
+                    
+                </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>

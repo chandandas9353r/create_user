@@ -1,51 +1,56 @@
 <html>
-    <head>
-        <title>DEMO</title>
-        <script src="https://kit.fontawesome.com/6ff20a25ef.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="teacher_dashboard.css">
-        <script src="teacher_dashboard.js" type="module"></script>
-    </head>
-    <body>
-        <div id="createClassCard">
-            <div class="items">
-                <span>Semester:</span>
-                <span><input type="number" id="sem"></span>
-            </div>
-            <div class="items">
-                <span>Subject:</span>
-                <span><input type="text" id="sub"></span>
-            </div>
-            <div class="items">
-                <span>Room:</span>
-                <span>R-<input type="number" id="room"></span>
-            </div>
-            <div class="items">
-                <span>Time:</span>
-                <span><input type="time" id="time"></span>
-            </div>
-            <div class="items">
-                <button id="create">Create</button>
-                <button id="cancel">Cancel</button>
+<head>
+    <title>DEMO</title>
+    <script src="https://kit.fontawesome.com/6ff20a25ef.js" crossorigin="anonymous"></script>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="teacher_dashboard.css">
+    <script src="teacher_dashboard.js" type="module"></script>
+</head>
+<body>
+    <div id="createClassCard">
+        <span style="font-weight: bolder;"> ADD NEW CLASS</span>
+        <br>
+        <br> <label for="startTime">Start time : &nbsp; </label>
+        <input type="time" id="startTime">
+        <br> <label for="endTime">End time : &nbsp; </label>
+        <input type="time" id="endTime">
+        <br> <label for="sub">Subject : &nbsp; </label>
+        <input type="text" id="sub">
+        <br><label for="sem">Semester : &nbsp; </label>
+        <select name="sem" id="sem">
+            <option value="" disabled selected>Semester</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+        <br><label for="room">Room No. : &nbsp; </label>
+        R-<input type="number" name="room" id="room">
+        <br>
+        <button id="newClassBtn">DONE</button>
+        <button id="cancel">CANCEL</button>
+    </div>
+    <div id="content">
+        <div class="heading">
+            <h2>
+                <i class="fa-solid fa-chalkboard-user" style="color: #000000;"></i> DASHBOARD
+            </h2>
+        </div>
+        <div class="container">
+            <h2>Today's Class</h2>
+            <span id="nolecture" style="font-weight: light; font-style: italic;"></span>
+            <div id="lecturesList"></div>
+            <div class="container1">
+                <span>Click to add new class </span>
+                <i class="fa-solid fa-plus fa-2xl"></i>
             </div>
         </div>
-        <div id="content">
-            <div class="heading">
-                <h2>
-                    <i class="fa-solid fa-chalkboard-user" style="color: #000000;"></i> DASHBOARD
-                </h2>
-            </div>
-            <div class="container">
-                <h2>Today's Lectures</h2>
-                <span id="nolecture"></span>
-                <div id="lecturesList"></div>
-                <div class="container1">
-                    <span>Click to add Lectures </span>
-                    <i class="fa-solid fa-plus fa-2xl"></i>
-                </div>
-            </div>
+        <div class="classes">
             <div class="ongoingClass">
                 <span>Ongoing Class ></span>
                 <div class="cards">
@@ -55,62 +60,64 @@
                         <br><span> Dept : BCA</span>
                         <br><span> Semester : 6th </span>
                         <br><span>Ends at: 10:00 AM</span>
-                        <br><br><br>
+                        <br>
+                        <br>
+                        <br>
                         <div>
                             <span>10 Attended</span>
                         </div>
-                       <span><a href="">click here </a>to end current class</span>
-                    </div>  
+                        <span><a href="">click here </a>to end current class</span>
+                    </div>
                 </div>
             </div>
-            <hr>
-            <div class="heading2">
-                <h2>Records</h2>
-            </div>
-            <span>Select Subject: </span>
-            <select>
-                <option value="ml">Machine learning</option>
-                <option value="java">Java</option>
-                <option value="ai">AI</option>
-            </select>
-            <input type="date" name="date" id="date">
-            <table style="width: 100%;">
-                <tr>
-                    <th>Name</th>
-                    <th>Roll</th>
-                    <th>Student ID</th>
-                    <th>Remark</th>
-                    <th>Eligibility</th>
-                </tr>
-                <tr>
-                    <td>Student A</td>
-                    <td>1000</td>
-                    <td>2020-1000</td>
-                    <td>Present</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Student B</td>
-                    <td>1000</td>
-                    <td>2020-1000</td>
-                    <td>Present</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Student C</td>
-                    <td>1000</td>
-                    <td>2020-1000</td>
-                    <td>Present</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td>Student D</td>
-                    <td>1000</td>
-                    <td>2020-1000</td>
-                    <td>Present</td>
-                    <td>No</td>
-                </tr>
-            </table>
         </div>
-    </body>
+        <div class="heading2">
+            <h2>Records</h2>
+        </div>
+        <span>Select Subject: </span>
+        <select>
+            <option value="ml">Machine learning</option>
+            <option value="java">Java</option>
+            <option value="ai">AI</option>
+        </select>
+        <input type="date" name="date" id="date">
+        <table style="width: 100%;">
+            <tr>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Student ID</th>
+                <th>Remark</th>
+                <th>Eligibility</th>
+            </tr>
+            <tr>
+                <td>Student A</td>
+                <td>1000</td>
+                <td>2020-1000</td>
+                <td>Present</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Student B</td>
+                <td>1000</td>
+                <td>2020-1000</td>
+                <td>Present</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>Student C</td>
+                <td>1000</td>
+                <td>2020-1000</td>
+                <td>Present</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>Student D</td>
+                <td>1000</td>
+                <td>2020-1000</td>
+                <td>Present</td>
+                <td>No</td>
+            </tr>
+        </table>
+    </div>
+</body>
 </html>
