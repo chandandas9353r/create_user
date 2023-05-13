@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
 
 const appSettings = {
     apiKey: "AIzaSyBJ2Z4fqeti3-xwrDjVlIYGu-Du6v2Gb-s",
@@ -13,6 +14,11 @@ const appSettings = {
 
 const app = initializeApp(appSettings)
 const auth = getAuth(app)
+const database = getDatabase(app)
+
+onAuthStateChanged(auth, (user) => {
+    if (user) onValue(ref(database,`student/`), (snapshot) => {(snapshot.child(user.uid).exists()) ? window.open('student_dashboard.html','_self') : window.open('teacher_dashboard.html','_self')})
+})
 
 let signUpBtn = document.querySelector('#sign-up-button > #sign-up-btn')
 
@@ -29,6 +35,7 @@ function signUp() {
 }
 
 function verifyAccount(auth) {
+    if(auth.currentUser == null) return true
     let verified = auth.currentUser.emailVerified
     if (verified == false){
         document.querySelector('.container').style.visibility = 'hidden'
