@@ -17,7 +17,6 @@ const auth = getAuth(app)
 const database = getDatabase(app)
 
 onAuthStateChanged(auth, (user) => {
-    console.log(auth)
     if (!user) window.open('signin.html', '_self')
     else loggedIn()
 })
@@ -70,7 +69,7 @@ function loggedIn(){
             snapshot.forEach(element => {
                 let classTime = element.key
                 if(classTime < currentTime){
-                    window.open('student_class.html','_self')
+                    window.open('student_ongoingDisplay.html','_self')
                 }
             })
             // let length = Object.keys(snapshot.val()).length,

@@ -59,16 +59,16 @@ body{
 }
 .cards{
     margin: 15px;
-    border-radius: 15px;
 }
 .cards > p{
-    margin: 0;
+    margin: 0px;
     color: rgb(100, 100, 100);
     background: #000;
     text-align: center;
 }
 .cards > *{
     background-color: rgb(104, 101, 101);
+    padding: 6px;
 }
 .upcomingClass{
     display: flex;
