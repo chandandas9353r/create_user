@@ -17,13 +17,17 @@ const auth = getAuth(app)
 const database = getDatabase(app)
 
 let index = 1
+let queryString = window.location.search
+let urlParams = new URLSearchParams(queryString)
+let classStartTime = urlParams.get('Start Time')
+let classEndTime = urlParams.get('End Time')
 
 onAuthStateChanged(auth, (user) => {
     if (!user) window.open('signin.html', '_self')
     else loggedIn()
 })
 
-function checkLocation(){
+function checkLocation() {
     let uid = auth.currentUser.uid
     onValue(ref(database, `student/${uid}/`), (snapshot) => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -34,15 +38,29 @@ function checkLocation(){
                 dept = snapshot.val().Course,
                 sem = snapshot.val().Semester
             currentDate = (date.getMonth() + 1 < 10) ? `${currentDate}:0${date.getMonth() + 1}:${date.getFullYear()}` : `${currentDate}:${date.getMonth() + 1}:${date.getFullYear()}`
-            set(ref(database, `classes/${currentDate}/students/${dept}/${sem}/${uid}/Location${index++}`), {
+            console.log(lat,lng)
+            set(ref(database, `classes/${currentDate}/students/${dept}/${sem}/${uid}/Location${index}`), {
                 'Latitude': lat,
                 'Longitude': lng
             })
         })
     })
+    index++
 }
 
-function loggedIn(){
+function loggedIn() {
+    let startHour = parseInt(classStartTime.slice(0, 2)),
+        startMinutes = parseInt(classStartTime.slice(3, 5)),
+        endHour = parseInt(classEndTime.slice(0, 2)),
+        endMinutes = parseInt(classEndTime.slice(3, 5)),
+        totalTime = (endMinutes < startMinutes) ? ((endHour - startHour - 1) * 60 + (startMinutes - endMinutes)) : ((endHour - startHour) * 60 + (endMinutes - startMinutes))
+    console.log(totalTime)
+    window.setInterval(() => {
+        let currentTime = new Date().toLocaleTimeString().slice(0, 5)
+        if (classEndTime <= currentTime) {
+            window.open('student_dashboard.html', '_self')
+        }
+    }, 1000)
     checkLocation()
-    window.setInterval(checkLocation,10000)
+    window.setInterval(checkLocation, (totalTime/10)*60*1000)
 }

@@ -33,11 +33,12 @@ function loggedIn() {
         lecturesList = document.getElementById('lecturesList'),
         date = new Date(),
         currentDate = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate(),
-        uid = auth.currentUser.uid
+        uid = auth.currentUser.uid,
+        dept
     currentDate = (date.getMonth() + 1 < 10) ? `${currentDate}:0${date.getMonth() + 1}:${date.getFullYear()}` : `${currentDate}:${date.getMonth() + 1}:${date.getFullYear()}`
 
     onValue(ref(database), (snapshot) => {
-        let dept = snapshot.child(`users/teacher/${uid}/Department`).val()
+        dept = snapshot.child(`users/teacher/${uid}/Department`).val()
         onValue(ref(database, `classes/${currentDate}/teachers/${dept}/${uid}/`), (snapshot) => {
             if (snapshot.val() == null) nolecture.innerHTML = 'No lectures has been set.... '
             else {
@@ -62,6 +63,19 @@ function loggedIn() {
             }
         })
     })
+
+    window.setInterval(() => {
+        onValue(ref(database, `classes/${currentDate}/teachers/${dept}/${uid}/`), (snapshot) => {
+            let currentTime = new Date().toLocaleTimeString().slice(0,5)
+            snapshot.forEach(element => {
+                let classStartTime = element.key
+                let classEndTime = element.child('End Time').val()
+                if(classStartTime <= currentTime && classEndTime > currentTime){
+                    window.open(`teacher_ongoingDisplay.html?Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
+                }
+            });
+        })
+    },1000)
 
     document.querySelector('.container > .container1').addEventListener('click', openCreateCard)
 }
@@ -105,6 +119,5 @@ function openCreateCard() {
     cancel.addEventListener('click', function () {
         content.style.display = 'block'
         createClassCard.style.display = 'none'
-        // location.reload()
     })
 }

@@ -67,15 +67,12 @@ function loggedIn(){
         onValue(ref(database,`classes/${currentDate}/${dept}/${sem}/`), (snapshot) => {
             let currentTime = new Date().toLocaleTimeString().slice(0,5)
             snapshot.forEach(element => {
-                let classTime = element.key
-                if(classTime < currentTime){
-                    window.open('student_ongoingDisplay.html','_self')
+                let classStartTime = element.key
+                let classEndTime = element.child('End Time').val()
+                if(classStartTime <= currentTime && classEndTime > currentTime){
+                    window.open(`student_ongoingDisplay.html?Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
                 }
             })
-            // let length = Object.keys(snapshot.val()).length,
-            //     currentTime = date.toLocaleTimeString()
-            //     console.log(currentTime)
-            // if(Object.values(Object.entries(snapshot.val())[0][1])[2] == )
         })
     },1000)
 }
