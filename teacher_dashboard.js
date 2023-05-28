@@ -34,10 +34,12 @@ function loggedIn() {
         date = new Date(),
         currentDate = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate(),
         uid = auth.currentUser.uid,
-        dept
+        dept,
+        teacherName
     currentDate = (date.getMonth() + 1 < 10) ? `${currentDate}:0${date.getMonth() + 1}:${date.getFullYear()}` : `${currentDate}:${date.getMonth() + 1}:${date.getFullYear()}`
 
     onValue(ref(database), (snapshot) => {
+        teacherName = snapshot.child(`users/teacher/${uid}/Name`).val()
         dept = snapshot.child(`users/teacher/${uid}/Department`).val()
         onValue(ref(database, `classes/${currentDate}/teachers/${dept}/${uid}/`), (snapshot) => {
             if (snapshot.val() == null) nolecture.innerHTML = 'No lectures has been set.... '
@@ -46,8 +48,8 @@ function loggedIn() {
                 lecturesList.style.display = 'flex'
                 lecturesList.innerHTML = null
                 snapshot.forEach(element => {
-                    let startTime = element.key,
-                        sub = element.child('Subject').val(),
+                    let startTime = element.child('Start Time').val(),
+                        sub = element.key,
                         sem = element.child('Semester').val(),
                         section = document.createElement('div'),
                         item = document.createElement('div')
@@ -68,10 +70,12 @@ function loggedIn() {
         onValue(ref(database, `classes/${currentDate}/teachers/${dept}/${uid}/`), (snapshot) => {
             let currentTime = new Date().toLocaleTimeString().slice(0,5)
             snapshot.forEach(element => {
-                let classStartTime = element.key
+                let classStartTime = element.child('Start Time').val()
                 let classEndTime = element.child('End Time').val()
+                let sem = element.child('Semester').val()
+                let sub = element.key
                 if(classStartTime <= currentTime && classEndTime > currentTime){
-                    window.open(`teacher_ongoingDisplay.html?Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
+                    window.open(`teacher_ongoingDisplay.html?Teacher=${teacherName}&Department=${dept}&Semester=${sem}&Subject=${sub}&Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
                 }
             });
         })
@@ -99,15 +103,14 @@ function openCreateCard() {
                 sub = document.getElementById('sub').value,
                 room = `R-${document.getElementById('room').value}`
             currentDate = (date.getMonth() + 1 < 10) ? `${currentDate}:0${date.getMonth() + 1}:${date.getFullYear()}` : `${currentDate}:${date.getMonth() + 1}:${date.getFullYear()}`
-            set(ref(database, `classes/${currentDate}/teachers/${dept}/${uid}/${startTime}/`), {
+            set(ref(database, `classes/${currentDate}/teachers/${dept}/${uid}/${sub}/`), {
                 'Semester': sem,
-                'Room': room,
-                'Subject': sub,
-                'End Time': endTime
+                'Start Time': startTime,
+                'End Time': endTime,
+                'Room': room
             })
-            set(ref(database, `classes/${currentDate}/${dept}/${sem}/${startTime}/`), {
-                'Teacher': teacherName,
-                'Subject': sub,
+            set(ref(database, `classes/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/`), {
+                'Start Time': startTime,
                 'End Time': endTime,
                 'Room': room
             })

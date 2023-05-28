@@ -48,11 +48,15 @@ function loggedIn(){
                 lecturesList.style.display = 'flex';
                 lecturesList.innerHTML = null
                 snapshot.forEach(element => {
-                    let startTime = element.key
+                    let sub = element.key
+                    let startTime
+                    element.forEach(element => {
+                        startTime = element.child('Start Time').val()
+                    })
                     let section = document.createElement('div'),
                         item = document.createElement('div')
                     section.setAttribute('class', 'cards')
-                    createSection('p', element.child('Subject').val(), section, null)
+                    createSection('p', sub, section, null)
                     createSection('span', `Class starts at ${startTime}`, item, section)
                     createSection('br', '', item, section)
                     createSection('span', `Dept : ${dept}`, item, section)
@@ -65,12 +69,19 @@ function loggedIn(){
     })
     window.setInterval(() => {
         onValue(ref(database,`classes/${currentDate}/${dept}/${sem}/`), (snapshot) => {
-            let currentTime = new Date().toLocaleTimeString().slice(0,5)
+            let currentTime = new Date().toTimeString().slice(0,5)
             snapshot.forEach(element => {
-                let classStartTime = element.key
-                let classEndTime = element.child('End Time').val()
+                let sub = element.key
+                let teacherName = Object.keys(element.val())[0]
+                let classStartTime
+                let classEndTime
+                element.forEach(element => {
+                    classStartTime = element.child('Start Time').val(),
+                    classEndTime = element.child('End Time').val()
+                })
+                console.log(classStartTime,classEndTime,currentTime)
                 if(classStartTime <= currentTime && classEndTime > currentTime){
-                    window.open(`student_ongoingDisplay.html?Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
+                    window.open(`student_ongoingDisplay.html?Teacher=${teacherName}&Subject=${sub}&Course=${dept}&Semester=${sem}&Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
                 }
             })
         })
