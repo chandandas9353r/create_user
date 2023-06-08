@@ -82,7 +82,10 @@ function loggedIn() {
     },1000)
 
     document.querySelector('.container > .container1').addEventListener('click', openCreateCard)
+
+    document.querySelector('#content > button').addEventListener('click', checkRecords)
 }
+
 function openCreateCard() {
     let createClassCard = document.getElementById('createClassCard'),
         content = document.getElementById('content'),
@@ -122,5 +125,41 @@ function openCreateCard() {
     cancel.addEventListener('click', function () {
         content.style.display = 'block'
         createClassCard.style.display = 'none'
+    })
+}
+
+function checkRecords(){
+    let sub = (document.querySelector('#content > select').value).toUpperCase(),
+        date = document.getElementById('date').value,
+        today = date.slice(8,10),
+        month = date.slice(5,7),
+        year = date.slice(0,4),
+        recordsTable = document.querySelector('#content > table')
+    date = `${today}:${month}:${year}`
+    onValue(ref(database), (snapshot) => {
+        let uid = auth.currentUser.uid,
+            dept = snapshot.child(`users/teacher/${uid}/`).val().Department,
+            name = snapshot.child(`users/teacher/${uid}/`).val().Name,
+            sem = snapshot.child(`classes/${date}/teachers/${dept}/${uid}/${sub}/`).val().Semester
+        snapshot.child(`attendance/${date}/${dept}/${sem}/${sub}/${name}/`).forEach(element => {
+            let studentRow = document.createElement('tr'),
+                studentName = document.createElement('td'),
+                studentRoll = document.createElement('td'),
+                studentId = document.createElement('td'),
+                studentRemark = document.createElement('td'),
+                studentEligible = document.createElement('td'),
+                sUid = element.key,
+                sName = snapshot.child(`users/student/${dept}/${sem}/${sUid}/`).val().Name,
+                sRoll = snapshot.child(`users/student/${dept}/${sem}/${sUid}/`).val().Roll,
+                sId = snapshot.child(`users/student/${dept}/${sem}/${sUid}/Student ID/`).val(),
+                sRemark = snapshot.child(`attendance/${date}/${dept}/${sem}/${sub}/${name}/${sUid}/Location/`).val().Present
+            studentName.innerHTML = sName
+            studentRoll.innerHTML = sRoll
+            studentId.innerHTML = sId
+            studentRemark.innerHTML = (sRemark) ? 'Present' : 'Absent'
+            studentEligible.innerHTML = (sRemark) ? 'Yes' : 'No'
+            studentRow.append(studentName,studentRoll,studentId,studentRemark,studentEligible)
+            recordsTable.append(studentRow)
+        });
     })
 }

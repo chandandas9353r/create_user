@@ -79,7 +79,6 @@ function loggedIn(){
                     classStartTime = element.child('Start Time').val(),
                     classEndTime = element.child('End Time').val()
                 })
-                console.log(classStartTime,classEndTime,currentTime)
                 if(classStartTime <= currentTime && classEndTime > currentTime){
                     window.open(`student_ongoingDisplay.html?Teacher=${teacherName}&Subject=${sub}&Course=${dept}&Semester=${sem}&Start Time=${classStartTime}&End Time=${classEndTime}`,'_self')
                 }

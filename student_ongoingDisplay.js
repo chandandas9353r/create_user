@@ -30,6 +30,19 @@ onAuthStateChanged(auth, (user) => {
     else loggedIn()
 })
 
+function checkAvg(lat, lng, currentDate, uid){
+    let prevLat, prevLng
+    onValue(ref(database, `attendance/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/${uid}/`), (snapshot) => {
+        if(snapshot.child('Location').exists()){
+            prevLat = snapshot.child('Location').val().Latitude
+            prevLng = snapshot.child('Location').val().Longitude
+            lat = (lat + prevLat)/2
+            lng = (lng + prevLng)/2
+        }
+    })
+    return [lat,lng]
+}
+
 function checkLocation() {
     let uid = auth.currentUser.uid
     navigator.geolocation.getCurrentPosition((position) => {
@@ -39,20 +52,21 @@ function checkLocation() {
             currentDate = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate()
         currentDate = (date.getMonth() + 1 < 10) ? `${currentDate}:0${date.getMonth() + 1}:${date.getFullYear()}` : `${currentDate}:${date.getMonth() + 1}:${date.getFullYear()}`
         onValue(ref(database, `classes/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/`), (snapshot) => {
+            let updatedLatLng = (checkAvg(lat,lng,currentDate,uid))
             let locationMatch = true
             if(!snapshot.child('Location').exists()){
-                set(ref(database, `attendance/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/${uid}/`), {
-                    'Latitude': lat,
-                    'Longitude': lng,
+                set(ref(database, `attendance/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/${uid}/Location/`), {
+                    'Latitude': updatedLatLng[0],
+                    'Longitude': updatedLatLng[1],
                     'Present': locationMatch
                 })
             } else {
-                let serverLat = snapshot.child('Location/Latitude').val()
-                let serverLng = snapshot.child('Location/Longitude').val()
-                locationMatch = (serverLat == lat && serverLng == lng) ? true : false
-                update(ref(database, `attendance/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/${uid}/`), {
-                    'Latitude': lat,
-                    'Longitude': lng,
+                let teacherLat = snapshot.child('Location/Latitude').val()
+                let teacherLng = snapshot.child('Location/Longitude').val()
+                locationMatch = (Math.abs(teacherLat - updatedLatLng[0]) <= 0.000555 && Math.abs(teacherLng - updatedLatLng[1]) <= 0.000555) ? true : false
+                update(ref(database, `attendance/${currentDate}/${dept}/${sem}/${sub}/${teacherName}/${uid}/Location/`), {
+                    'Latitude': updatedLatLng[0],
+                    'Longitude': updatedLatLng[1],
                     'Present': locationMatch
                 })
             }
