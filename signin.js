@@ -16,9 +16,9 @@ const app = initializeApp(appSettings)
 const auth = getAuth(app)
 const database = getDatabase(app)
 
-onAuthStateChanged(auth, (user) => {
-    if (user) onValue(ref(database,`student/`), (snapshot) => {(snapshot.child(user.uid).exists()) ? window.open('student_dashboard.html','_self') : window.open('teacher_dashboard.html','_self')})
-})
+// onAuthStateChanged(auth, (user) => {
+//     if (user) onValue(ref(database,`student/`), (snapshot) => {(snapshot.child(user.uid).exists()) ? window.open('student_dashboard.html','_self') : window.open('teacher_dashboard.html','_self')})
+// })
 
 let signInBtn = document.querySelector('#sign-in-button > #sign-in-btn')
 
