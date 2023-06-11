@@ -16,9 +16,16 @@ const app = initializeApp(appSettings)
 const auth = getAuth(app)
 const database = getDatabase(app)
 
-// onAuthStateChanged(auth, (user) => {
-//     if (user) onValue(ref(database,`student/`), (snapshot) => {(snapshot.child(user.uid).exists()) ? window.open('student_dashboard.html','_self') : window.open('teacher_dashboard.html','_self')})
-// })
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        if(!verifyAccount()) return
+        onValue(ref(database), (snapshot) => {
+            if(snapshot.child(`users/teacher/${user.uid}`).exists()) window.open('teacher_dashboard.html','_self')
+            else if(snapshot.child(`student/${user.uid}`).exists()) window.open('student_dashboard.html','_self')
+            else window.open('profile.html','_self')
+        })
+    }
+})
 
 let signInBtn = document.querySelector('#sign-in-button > #sign-in-btn')
 
@@ -30,22 +37,22 @@ function signIn() {
 
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
         let uid = (userCredential.user.auth.currentUser.uid)
-        if (verifyAccount(auth)){
-            onValue(ref(database, 'student/'), (snapshot) => {
-                let course = snapshot.child(`${uid}/Course`).val(),
-                    sem = snapshot.child(`${uid}/Semester`).val(),
-                    profession = snapshot.child(`${uid}/Profession`).val()
-                (profession == 'student') ? onValue(ref(database, `/users/student/`), (snapshot) => {(snapshot.child(`${course}/${sem}/${uid}`).exists()) ? window.open('student_dashboard.html','_self') : window.open('profile.html','_self')}) : onValue(ref(database, `/users/teacher/`), (snapshot) => {(snapshot.child(`${uid}`).exists()) ? window.open('teacher_dashboard.html','_self') : window.open('profile.html','_self')})
+        if (verifyAccount()){
+            onValue(ref(database), (snapshot) => {
+                if(snapshot.child(`users/teacher/${uid}`).exists()) window.open('teacher_dashboard.html','_self')
+                else if(snapshot.child(`student/${uid}`).exists()) window.open('student_dashboard.html','_self')
+                else window.open('profile.html','_self')
             })
         }
     })
 }
 
-function verifyAccount(auth) {
+function verifyAccount() {
     let verified = auth.currentUser.emailVerified
     if (verified == false) {
         document.querySelector('.container').style.visibility = 'hidden'
         document.getElementById('verify').style.visibility = 'visible'
         document.getElementById('text').innerHTML = `Verification email sent to ${auth.currentUser.email}`
-    } else return true
+    }
+    return verified
 }

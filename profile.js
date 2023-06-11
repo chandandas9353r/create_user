@@ -23,23 +23,14 @@ teacherCard.style.display = 'none'
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        let uid = (user.uid)
-        onValue(ref(database, 'student/'), (snapshot) => {
-            let course = snapshot.child(`${uid}/Course`).val(),
-                sem = snapshot.child(`${uid}/Semester`).val(),
-                profession = snapshot.child(`${uid}/Profession`).val()
-            if (profession == 'student') {
-                onValue(ref(database, `/users/student/`), (snapshot) => {
-                    (snapshot.child(`${course}/${sem}/${uid}`).exists()) ? window.open('student_dashboard.html', '_self') : updateProfileDetails(user)
-                })
-            } else {
-                onValue(ref(database, `/users/teacher/`), (snapshot) => {
-                    (snapshot.child(`${uid}`).exists()) ? window.open('teacher_dashboard.html', '_self') : updateProfileDetails(user)
-                })
-            }
+        let uid = user.uid
+        onValue(ref(database), (snapshot) => {
+            if(snapshot.child(`users/teacher/${uid}`).exists()) window.open('teacher_dashboard.html','_self')
+            else if(snapshot.child(`student/${uid}`).exists()) window.open('student_dashboard.html','_self')
+            else updateProfileDetails(user)
         })
     } else {
-        console.log('SIGNED OUT')
+        window.open('signin.html','_self')
     }
 });
 
